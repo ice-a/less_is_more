@@ -97,7 +97,7 @@ export default defineConfig({
     }
   },
   sitemap: {
-    hostname: 'https://example.com',
+    hostname: 'https://104303.xyz',
   },
   lastUpdated: true,
   markdown: {
@@ -110,7 +110,7 @@ export default defineConfig({
   head: [
     [
       'script',
-      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-BFNE5F06HH' }
+      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-0JFM2DF8ET' }
     ],
     [
       'script',
@@ -118,7 +118,7 @@ export default defineConfig({
       `window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-BFNE5F06HH');`
+      gtag('config', 'G-0JFM2DF8ET');`
     ]
   ]
 })

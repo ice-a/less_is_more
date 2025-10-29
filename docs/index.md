@@ -3,16 +3,16 @@
 layout: home
 
 hero:
-  name: "My Awesome Project"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  name: "爱喝水的木子"
+  text: "存在即合理"
+  tagline: 一个小菜鸡的个人博客
   actions:
     - theme: brand
-      text: Markdown Examples
+      text: 导航
       link: /navigation
     - theme: alt
-      text: API Examples
-      link: /2
+      text: 关于(fake)
+      link: /about
 
 features:
   - title: Feature A
