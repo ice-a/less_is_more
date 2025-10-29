@@ -122,6 +122,35 @@ export default defineConfig({
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-0JFM2DF8ET');`
-    ]
+    ],
+    [
+      'script',
+      {
+        defer: true,
+        src: 'https://umami.lideshan.top/script.js', // 替换为您的实际 Umami 脚本 URL
+        'data-website-id': 'f941968e-914a-4aee-8249-26b0d66bc3fc',
+      },
+    ],
+    [
+      'script',
+      {},
+      `
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "txpswcwz8r");
+      `,
+    ],
+    
+    // 添加 Bing Webmaster Tools Meta 验证标签
+    // 请将 '1234567890ABCDEF' 替换为您的实际 Bing 验证代码
+    [
+      'meta',
+      {
+        name: 'msvalidate.01',
+        content: '1234567890ABCDEF', // 替换为您的 Bing 验证代码
+      },
+    ],
   ]
 })
