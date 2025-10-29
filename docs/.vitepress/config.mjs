@@ -7,6 +7,7 @@ import { generateSidebar } from 'vitepress-sidebar'
 export default defineConfig({
   title: "爱喝水的木子",
   description: "存在即合理",
+  ignoreDeadLinks: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [

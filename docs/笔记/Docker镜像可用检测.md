@@ -39,7 +39,7 @@ npm install
 npm run dev
 ```
 
-访问 http://localhost:5173 查看应用
+访问开发服务器地址查看应用 (通常为 http://localhost:5173)
 
 ### 生产构建
 
