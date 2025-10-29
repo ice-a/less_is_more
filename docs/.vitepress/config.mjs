@@ -12,7 +12,10 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: '导航', link: '/navigation' },
+      { text: '题库', link: 'https://tiku.020417.xyz' },
+      { text: 'muzi', link: 'https://020417.xyz' },
+      { text: '关于(fake)', link: '/about' }
     ],
 
     sidebar: generateSidebar({
