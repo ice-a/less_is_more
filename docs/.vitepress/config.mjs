@@ -81,7 +81,7 @@ export default defineConfig({
       },
     ],
     footer: {
-      message: 'Released under the MIT License.',
+      message: 'Released under the MIT License. | <a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备2021025932号-1</a>',
       copyright: 'Copyright © 2023-present 爱喝水的木子'
     },
     search: {
@@ -100,7 +100,7 @@ export default defineConfig({
     }
   },
   sitemap: {
-    hostname: 'https://104303.xyz',
+    hostname: 'https://lideshan.cn',
   },
   lastUpdated: true,
   markdown: {
@@ -111,24 +111,24 @@ export default defineConfig({
     }
   },
   head: [
-    [
-      'script',
-      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-0JFM2DF8ET' }
-    ],
-    [
-      'script',
-      {},
-      `window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-0JFM2DF8ET');`
-    ],
+    // [
+    //   'script',
+    //   { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-0JFM2DF8ET' }
+    // ],
+    // [
+    //   'script',
+    //   {},
+    //   `window.dataLayer = window.dataLayer || [];
+    //   function gtag(){dataLayer.push(arguments);}
+    //   gtag('js', new Date());
+    //   gtag('config', 'G-0JFM2DF8ET');`
+    // ],
     [
       'script',
       {
         defer: true,
         src: 'https://umami.lideshan.top/script.js', // 替换为您的实际 Umami 脚本 URL
-        'data-website-id': 'f941968e-914a-4aee-8249-26b0d66bc3fc',
+        'data-website-id': 'e3937dd7-1cf3-4834-a628-36b226cfe53c',
       },
     ],
     [
@@ -139,19 +139,19 @@ export default defineConfig({
           c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
           t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
           y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "txpswcwz8r");
+        })(window, document, "clarity", "script", "id1bzkk266");
       `,
     ],
     
     // 添加 Bing Webmaster Tools Meta 验证标签
     // 请将 '1234567890ABCDEF' 替换为您的实际 Bing 验证代码
-    [
-      'meta',
-      {
-        name: 'msvalidate.01',
-        content: '1234567890ABCDEF', // 替换为您的 Bing 验证代码
-      },
-    ],
+    // [
+    //   'meta',
+    //   {
+    //     name: 'msvalidate.01',
+    //     content: '1234567890ABCDEF', // 替换为您的 Bing 验证代码
+    //   },
+    // ],
     [
       'meta',
       { 
