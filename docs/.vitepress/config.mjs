@@ -159,5 +159,6 @@ export default defineConfig({
         content: 'ca-pub-8097273255284826' // <meta name="google-adsense-account" content="ca-pub-8097273255284826">
       }
     ]
-  ]
+  ],
+  clientSetupFiles:'./theme/client.js'
 })
