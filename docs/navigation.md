@@ -4,4 +4,6 @@ layout: doc
 ---
 <Hitokoto />
 
+<AdCarousel />
+
 <Navigation />

@@ -1,4 +1,7 @@
 <Hitokoto />
+
+<AdCarousel />
+
 # 关于
 
 ## 个人简介
