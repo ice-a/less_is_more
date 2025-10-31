@@ -152,5 +152,12 @@ export default defineConfig({
         content: '1234567890ABCDEF', // 替换为您的 Bing 验证代码
       },
     ],
+    [
+      'meta',
+      { 
+        name: 'google-adsense-account', 
+        content: 'ca-pub-8097273255284826' // <meta name="google-adsense-account" content="ca-pub-8097273255284826">
+      }
+    ]
   ]
 })
