@@ -3,7 +3,7 @@ import Hitokoto from '../components/Hitokoto.vue'
 import Navigation from '../components/Navigation.vue'
 import AdCarousel from '../components/AdCarousel.vue'
 import SponsorInfo from '../components/SponsorInfo.vue'
-import layout from './layout.vue'
+import layout from './Layout.vue'
 
 export default {
     extends: DefaultTheme,
