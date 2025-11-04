@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@waline/client": "^3.7.1",
     "markdown-it-mathjax3": "^4.3.2",
     "vitepress": "^2.0.0-alpha.12",
     "vitepress-sidebar": "^1.33.0",

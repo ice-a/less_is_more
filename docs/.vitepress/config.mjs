@@ -10,6 +10,14 @@ export default defineConfig({
   ignoreDeadLinks: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    comment: {
+      provider: 'waline',
+      serverURL: 'https://waline.020417.xyz/',
+      dark: 'auto',
+      requiredMeta: ['nick', 'mail'],
+      placeholder: '欢迎发表您的评论！',
+      pageSize: 10
+    },
     nav: [
       { text: 'Home', link: '/' },
       { text: '导航', link: '/navigation' },
