@@ -1,43 +1,49 @@
 {
-  "hash": "8c45f547",
+  "hash": "c1e22b85",
   "configHash": "b3bcc5b8",
-  "lockfileHash": "4609b7f9",
-  "browserHash": "d829188f",
+  "lockfileHash": "47b16d40",
+  "browserHash": "a7c52c6b",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "f0442dd4",
+      "fileHash": "0a41470d",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "a2e6dc61",
+      "fileHash": "e8e1aa6f",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
       "src": "../../../../node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "06420830",
+      "fileHash": "da1b1547",
       "needsInterop": false
     },
     "vitepress > @vueuse/integrations/useFocusTrap": {
       "src": "../../../../node_modules/@vueuse/integrations/useFocusTrap.mjs",
       "file": "vitepress___@vueuse_integrations_useFocusTrap.js",
-      "fileHash": "7f9a2701",
+      "fileHash": "9cf7d593",
       "needsInterop": false
     },
     "vitepress > mark.js/src/vanilla.js": {
       "src": "../../../../node_modules/mark.js/src/vanilla.js",
       "file": "vitepress___mark__js_src_vanilla__js.js",
-      "fileHash": "ff34e536",
+      "fileHash": "483bd5ee",
       "needsInterop": false
     },
     "vitepress > minisearch": {
       "src": "../../../../node_modules/minisearch/dist/es/index.js",
       "file": "vitepress___minisearch.js",
-      "fileHash": "46be31cc",
+      "fileHash": "05a7faa5",
+      "needsInterop": false
+    },
+    "@waline/client/component": {
+      "src": "../../../../node_modules/@waline/client/dist/component.js",
+      "file": "@waline_client_component.js",
+      "fileHash": "0f121a80",
       "needsInterop": false
     }
   },
@@ -47,6 +53,9 @@
     },
     "chunk-JAPIL3UL": {
       "file": "chunk-JAPIL3UL.js"
+    },
+    "chunk-5WRI5ZAA": {
+      "file": "chunk-5WRI5ZAA.js"
     }
   }
 }

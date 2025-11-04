@@ -11,12 +11,20 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     comment: {
+      // 设置评论提供者为Waline
       provider: 'waline',
+      // Waline服务器URL
       serverURL: 'https://waline.020417.xyz/',
+      // 自动跟随系统暗色模式
       dark: 'auto',
-      requiredMeta: ['nick', 'mail'],
-      placeholder: '欢迎发表您的评论！',
-      pageSize: 10
+      // 语言设置为中文
+      lang: 'zh-CN',
+      // 每页显示10条评论
+      pageSize: 10,
+      // 评论输入框占位符
+      placeholder: '有什么想法? 来评论吧~',
+      // 必需的元数据
+      requiredMeta: ['nick', 'mail']
     },
     nav: [
       { text: 'Home', link: '/' },
