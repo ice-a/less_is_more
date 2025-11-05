@@ -1,0 +1,111 @@
+<h1 id="数据集格式" tabindex="-1">数据集格式 <a class="header-anchor" href="#数据集格式" aria-label="Permalink to “数据集格式”">&#8203;</a></h1>
+<p><img src="https://i-blog.csdnimg.cn/direct/abdbb8a677104e4cb6acbf94f5f49b58.png" alt="在这里插入图片描述" loading="lazy"></p>
+<h1 id="训练代码" tabindex="-1">训练代码 <a class="header-anchor" href="#训练代码" aria-label="Permalink to “训练代码”">&#8203;</a></h1>
+<div class="language-python line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">python</span><pre><!--::markdown-it-async::32501spyouvat7xx7rkgxl::--><code>
+from ultralytics import YOLO
+import multiprocessing
+
+if __name__ == &#039;__main__&#039;:
+    # 添加 Windows 多进程支持
+    multiprocessing.freeze_support()
+    # Load a model
+    model = YOLO(&quot;yolo11n.pt&quot;)  # load a pretrained model (recommended for training)
+
+    # Train the model with MPS
+    results = model.train(data=&quot;coco8.yaml&quot;, epochs=100, imgsz=640)
+    # 量化
+    results = model.val(half=True)  # evaluate model performance on the validation set
+    # Run inference with the model
+    # results = model(&quot;datasets/coco8/images/val/000000000061.jpg&quot;)  # predict on an image
+    # result.save(filename=&quot;result.jpg&quot;)
+    # 另存为模型
+    model.save(&quot;best.pt&quot;)</code></pre>
+<div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><h1 id="验证识别" tabindex="-1">验证识别 <a class="header-anchor" href="#验证识别" aria-label="Permalink to “验证识别”">&#8203;</a></h1>
+<div class="language-python line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">python</span><pre><!--::markdown-it-async::4irxtudn987l9pp9fy4koe::--><code>from ultralytics import YOLO
+# Load a model
+model = YOLO(&quot;best.pt&quot;)  # pretrained YOLO11n model
+
+# Run batched inference on a list of images
+results = model([&quot;datasets/coco8/images/train/000000000034.jpg&quot;])  # return a list of Results objects
+
+# Process results list
+for result in results:
+    boxes = result.boxes  # Boxes object for bounding box outputs
+    masks = result.masks  # Masks object for segmentation masks outputs
+    keypoints = result.keypoints  # Keypoints object for pose outputs
+    probs = result.probs  # Probs object for classification outputs
+    obb = result.obb  # Oriented boxes object for OBB outputs
+    result.show()  # display to screen
+    result.save(filename=&quot;result.jpg&quot;)  # save to disk</code></pre>
+<div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><h1 id="基于模型做成一个在线api接口" tabindex="-1">基于模型做成一个在线api接口 <a class="header-anchor" href="#基于模型做成一个在线api接口" aria-label="Permalink to “基于模型做成一个在线api接口”">&#8203;</a></h1>
+<div class="language-python line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">python</span><pre><!--::markdown-it-async::vt984bwnvxipqpmcp444x::--><code>import torch
+from flask import Flask, request, jsonify
+from ultralytics import YOLO
+import cv2
+import numpy as np
+import base64
+from PIL import Image
+import io
+
+app = Flask(__name__)
+
+# 检查 CUDA 是否可用
+device = &quot;cuda&quot; if torch.cuda.is_available() else &quot;cpu&quot;
+print(f&quot;Using device: {device}&quot;)
+
+model = YOLO(&quot;best.pt&quot;).to(device)
+
+def process_image(image_data):
+    results = model(image_data)
+    result = results[0]
+    
+    # 获取检测结果
+    detections = []
+    for box in result.boxes:
+        detection = {
+            &quot;bbox&quot;: box.xyxy[0].tolist(),  # 边界框坐标
+            &quot;confidence&quot;: float(box.conf),  # 置信度
+            &quot;class_id&quot;: int(box.cls),      # 类别ID
+        }
+        detections.append(detection)
+    
+    # 保存结果图像
+    result_img = result.plot()
+    
+    # 将结果图像转换为base64
+    is_success, buffer = cv2.imencode(&quot;.jpg&quot;, result_img)
+    if is_success:
+        img_base64 = base64.b64encode(buffer).decode(&#039;utf-8&#039;)
+        return detections, img_base64
+    return None, None
+
+@app.route(&#039;/predict&#039;, methods=[&#039;POST&#039;])
+def predict():
+    try:
+        # 检查是否有文件上传
+        if &#039;image&#039; not in request.files:
+            return jsonify({&#039;error&#039;: &#039;No image uploaded&#039;}), 400
+        
+        file = request.files[&#039;image&#039;]
+        # 读取图像文件
+        image_bytes = file.read()
+        image = Image.open(io.BytesIO(image_bytes))
+        
+        # 处理图像
+        detections, img_base64 = process_image(image)
+        
+        if detections is None:
+            return jsonify({&#039;error&#039;: &#039;Failed to process image&#039;}), 500
+        
+        # 返回结果
+        return jsonify({
+            &#039;detections&#039;: detections,
+            &#039;image&#039;: img_base64
+        })
+        
+    except Exception as e:
+        return jsonify({&#039;error&#039;: str(e)}), 500
+
+if __name__ == &#039;__main__&#039;:
+    app.run(host=&#039;0.0.0.0&#039;, port=5000, debug=True)</code></pre>
+<div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br></div></div>

@@ -1,0 +1,96 @@
+<p><img src="https://i-blog.csdnimg.cn/direct/4fcb070e362a46c9a2b456e45b93d663.png" alt="相对时间变时间戳" loading="lazy"></p>
+<div class="language-python line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">python</span><pre><!--::markdown-it-async::uewmynyulvk3179lc4rlri::--><code>import re
+from datetime import datetime, timedelta
+
+from loguru import logger
+
+# 定义一个映射表，将汉字数字转换为对应的整数
+CHINESE_NUMBERS = {
+    &#039;一&#039;: 1, &#039;二&#039;: 2, &#039;三&#039;: 3, &#039;四&#039;: 4, &#039;五&#039;: 5,
+    &#039;六&#039;: 6, &#039;七&#039;: 7, &#039;八&#039;: 8, &#039;九&#039;: 9, &#039;十&#039;: 10,
+    &#039;两&#039;: 2
+}
+
+
+def chinese_to_int(chinese_number: str) -&gt; int:
+    &quot;&quot;&quot;
+    将汉字数字转换成整数。
+    只支持小于100的汉字数字。
+    &quot;&quot;&quot;
+    if chinese_number.isdigit():  # 如果是纯数字直接返回
+        return int(chinese_number)
+
+    total = 0
+    unit = 1
+    num = 0
+    for char in reversed(chinese_number):
+        if char == &#039;十&#039;:  # 如果是 &quot;十&quot; 字，处理十位
+            unit = 10
+            if num == 0:  # 如果 &quot;十&quot; 前面没有数字，表示是 &quot;十&quot; 而非 &quot;X十&quot;
+                num = 1
+            total += num * unit
+            num = 0
+        else:
+            if char in CHINESE_NUMBERS:  # 如果是普通数字，直接加
+                num = CHINESE_NUMBERS[char]
+            total += num * unit
+            num = 0
+            unit = 1
+    return total
+
+
+def convert_relative_time_to_timestamp(relative_time: str) -&gt; int:
+    &quot;&quot;&quot;
+    将相对时间（如&quot;2天前发布&quot;，&quot;一小时前发布&quot;）转换为时间戳。
+    &quot;&quot;&quot;
+    # 获取当前时间
+    now = datetime.now()
+
+    # 处理并解析输入字符串
+    if &quot;天前&quot; in relative_time:
+        match = re.search(r&#039;([\d一二三四五六七八九十两]+)天前&#039;, relative_time)
+        if match:
+            days = chinese_to_int(match.group(1))
+            result_time = now - timedelta(days=days)
+        else:
+            raise ValueError(&quot;无法解析 &#039;天前&#039; 时间格式&quot;)
+
+    elif &quot;小时前&quot; in relative_time:
+        match = re.search(r&#039;([\d一二三四五六七八九十两]+)小时前&#039;, relative_time)
+        if match:
+            hours = chinese_to_int(match.group(1))
+            result_time = now - timedelta(hours=hours)
+        else:
+            raise ValueError(&quot;无法解析 &#039;小时前&#039; 时间格式&quot;)
+
+    elif &quot;分钟前&quot; in relative_time:
+        match = re.search(r&#039;([\d一二三四五六七八九十两]+)分钟前&#039;, relative_time)
+        if match:
+            minutes = chinese_to_int(match.group(1))
+            result_time = now - timedelta(minutes=minutes)
+        else:
+            raise ValueError(&quot;无法解析 &#039;分钟前&#039; 时间格式&quot;)
+
+    else:
+        raise ValueError(&quot;无法识别的时间格式: &quot; + relative_time)
+
+    # 返回时间戳
+    return int(result_time.timestamp())
+
+
+# 测试
+def test_convert_relative_time_to_timestamp():
+    test_key = [&quot;2天前发布&quot;, &quot;一小时前发布&quot;, &quot;十五分钟前发布&quot;, &quot;两天前发布&quot;]
+    for item in test_key:
+        logger.info({item: convert_relative_time_to_timestamp(item)})
+
+
+test_convert_relative_time_to_timestamp()
+
+&quot;&quot;&quot; 输出结果
+2025-04-27 14:57:48.874 | INFO     | __main__:test_convert_relative_time_to_timestamp:84 - {&#039;2天前发布&#039;: 1745564268}
+2025-04-27 14:57:48.874 | INFO     | __main__:test_convert_relative_time_to_timestamp:84 - {&#039;一小时前发布&#039;: 1745733468}
+2025-04-27 14:57:48.874 | INFO     | __main__:test_convert_relative_time_to_timestamp:84 - {&#039;十五分钟前发布&#039;: 1745736168}
+2025-04-27 14:57:48.874 | INFO     | __main__:test_convert_relative_time_to_timestamp:84 - {&#039;两天前发布&#039;: 1745564268}
+&quot;&quot;&quot;</code></pre>
+<div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br></div></div>

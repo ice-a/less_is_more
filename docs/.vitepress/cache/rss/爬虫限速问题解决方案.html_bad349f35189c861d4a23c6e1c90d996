@@ -1,0 +1,108 @@
+<h1 id="限速" tabindex="-1">限速 <a class="header-anchor" href="#限速" aria-label="Permalink to “限速”">&#8203;</a></h1>
+<p>动态限制函数在固定时间窗口内的调用次数，并动态调整调用间隔。</p>
+<div class="language-python line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">python</span><pre><!--::markdown-it-async::zndc0ubrflmchk4puf6pka::--><code>from functools import wraps
+import time
+import threading
+from collections import deque
+
+
+def dynamic_rate_limit(max_calls, time_window):
+    &quot;&quot;&quot;
+    装饰器：动态限制函数在固定时间窗口内的调用次数，并动态调整调用间隔。
+    :param max_calls: 时间窗口内允许的最大调用次数
+    :param time_window: 时间窗口长度（秒）
+    &quot;&quot;&quot;
+
+    def decorator(func):
+        call_history = deque()  # 存储调用时间戳
+        lock = threading.Lock()  # 线程锁
+        next_call_time = 0  # 下一次允许调用的时间
+
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            nonlocal next_call_time
+            current_time = time.time()
+
+            with lock:
+                # 等待到下一个允许调用的时间
+                if current_time &lt; next_call_time:
+                    sleep_duration = next_call_time - current_time
+                    time.sleep(sleep_duration)
+                    current_time = time.time()  # 更新当前时间
+
+                # 清理过期的时间戳（早于当前时间窗口）
+                while call_history and call_history[0] &lt;= current_time - time_window:
+                    call_history.popleft()
+
+                # 若当前窗口内调用已达上限，等待窗口滑动
+                if len(call_history) &gt;= max_calls:
+                    oldest_call = call_history[0]
+                    window_end = oldest_call + time_window
+                    sleep_duration = max(0, window_end - current_time)
+                    time.sleep(sleep_duration)
+                    current_time = time.time()  # 更新当前时间
+                    # 再次清理可能过期的记录
+                    while call_history and call_history[0] &lt;= current_time - time_window:
+                        call_history.popleft()
+
+                # 记录当前调用时间
+                call_history.append(current_time)
+
+                # 计算剩余时间和剩余允许调用次数
+                remaining_calls = max_calls - len(call_history)
+                if call_history:
+                    window_start = call_history[0]
+                    remaining_time = (window_start + time_window) - current_time
+                else:
+                    remaining_time = time_window  # 窗口内无调用，剩余时间为整个窗口
+
+                # 动态调整下一次调用时间（若剩余时间充足）
+                if remaining_calls &gt; 0 and remaining_time &gt; (time_window / 2):
+                    average_interval = remaining_time / (remaining_calls + 1)
+                    next_call_time = current_time + average_interval
+                else:
+                    next_call_time = current_time  # 允许立即调用
+
+            return func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
+
+# 使用示例
+@dynamic_rate_limit(max_calls=3, time_window=10)
+def test_function():
+    print(f&quot;执行于: {time.strftime(&#039;%Y-%m-%d %H:%M:%S&#039;)}&quot;)
+
+
+# 测试调用
+for _ in range(20):
+    test_function()
+    # time.sleep(10)  # 模拟多次调用
+
+# result
+&quot;&quot;&quot;
+执行于: 2025-02-27 11:32:57
+执行于: 2025-02-27 11:33:00
+执行于: 2025-02-27 11:33:03
+执行于: 2025-02-27 11:33:07
+执行于: 2025-02-27 11:33:10
+执行于: 2025-02-27 11:33:13
+执行于: 2025-02-27 11:33:17
+执行于: 2025-02-27 11:33:20
+执行于: 2025-02-27 11:33:23
+执行于: 2025-02-27 11:33:27
+执行于: 2025-02-27 11:33:30
+执行于: 2025-02-27 11:33:33
+执行于: 2025-02-27 11:33:37
+执行于: 2025-02-27 11:33:40
+执行于: 2025-02-27 11:33:43
+执行于: 2025-02-27 11:33:47
+执行于: 2025-02-27 11:33:50
+执行于: 2025-02-27 11:33:53
+执行于: 2025-02-27 11:33:57
+执行于: 2025-02-27 11:34:00
+
+&quot;&quot;&quot;</code></pre>
+<div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br></div></div>

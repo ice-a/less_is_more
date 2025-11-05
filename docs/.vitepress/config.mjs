@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import { generateSidebar } from 'vitepress-sidebar'
-
+import { pagefindPlugin } from "vitepress-plugin-pagefind"
+import { RssPlugin } from 'vitepress-plugin-rss'
 
 
 // https://vitepress.dev/reference/site-config
@@ -175,5 +176,35 @@ export default defineConfig({
         content: 'ca-pub-8097273255284826' // <meta name="google-adsense-account" content="ca-pub-8097273255284826">
       }
     ]
-  ]
+  ],
+  vite: {
+    plugins: [
+      pagefindPlugin({
+        btnPlaceholder: '搜索',
+        placeholder: '搜索文档',
+        emptyText: '空空如也',
+        heading: '共: {{searchResult}} 条结果',
+        excludeSelector: ['img', 'a.header-anchor'],
+        forceLanguage: 'zh-cn',
+        customSearchQuery: (input) => {
+          const segmenter = new Intl.Segmenter('zh-CN', { granularity: 'word' })
+          const result = []
+          for (const it of segmenter.segment(input)) {
+            if (it.isWordLike) {
+              result.push(it.segment)
+            }
+          }
+          return result.join(' ')
+        },
+        filter(searchItem, idx, originArray) {
+          return !searchItem.route.includes('404')
+        }
+      }),
+      RssPlugin({
+        title: 'WIKI',
+        baseUrl: 'https://104303.xyz',
+        copyright: `版权所有 © 2024-${new Date().getFullYear()} 爱喝水的木子[rxht]`
+      })
+    ]
+  }
 })

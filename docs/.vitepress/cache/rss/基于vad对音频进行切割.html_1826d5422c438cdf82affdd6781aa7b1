@@ -1,0 +1,131 @@
+<h1 id="why" tabindex="-1">why? <a class="header-anchor" href="#why" aria-label="Permalink to “why?”">&#8203;</a></h1>
+<p>通过ai生成的音频上传到X音音乐，上传片段超过60s</p>
+<h1 id="so" tabindex="-1">So <a class="header-anchor" href="#so" aria-label="Permalink to “So”">&#8203;</a></h1>
+<p>基于vad停顿切分音频，分段上传</p>
+<div class="language-python line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">python</span><pre><!--::markdown-it-async::w3j4hy5zfli6p8c9m4b72m::--><code>&quot;&quot;&quot;
+pip install pydub
+pip install numpy
+pip install librosa
+pip install soundfile
+&quot;&quot;&quot;
+from pydub import AudioSegment
+from pydub.silence import split_on_silence
+import numpy as np
+
+
+def dynamic_audio_split(file_path, output_dir=&quot;output&quot;, max_length=50, min_length=5):
+    &quot;&quot;&quot;Intelligent audio segmentation with adaptive parameters&quot;&quot;&quot;
+    # Audio loading and initialization
+    audio = AudioSegment.from_file(file_path)
+    segments = []
+
+    # Adaptive parameter settings
+    base_params = {
+        &#039;silence_thresh&#039;: -40,
+        &#039;min_silence&#039;: 600,
+        &#039;keep_silence&#039;: 200,
+        &#039;step_size&#039;: 50
+    }
+
+    # Phase 1: Primary segmentation
+    raw_chunks = split_on_silence(
+        audio,
+        silence_thresh=base_params[&#039;silence_thresh&#039;],
+        min_silence_len=base_params[&#039;min_silence&#039;],
+        keep_silence=base_params[&#039;keep_silence&#039;],
+        seek_step=base_params[&#039;step_size&#039;]
+    )
+
+    # Phase 2: Dynamic processing
+    buffer = raw_chunks[0]
+    for chunk in raw_chunks[1:]:
+        projected_length = (len(buffer) + len(chunk)) / 1000
+
+        # Adaptive parameter adjustment
+        current_params = dynamic_param_tuning(buffer, base_params)
+
+        if projected_length &gt; max_length:
+            split_point = find_optimal_split(buffer, max_length)
+            if split_point:
+                segments.append(buffer[:split_point])
+                buffer = buffer[split_point:] + chunk
+            else:
+                segments.extend(force_split(buffer, max_length))
+                buffer = chunk
+        elif projected_length &lt; min_length:
+            buffer += chunk
+        else:
+            segments.append(buffer)
+            buffer = chunk
+
+    # Final processing
+    if len(buffer) &gt;= min_length * 1000:
+        if len(buffer) &gt; max_length * 1000:
+            segments.extend(force_split(buffer, max_length))
+        else:
+            segments.append(buffer)
+
+    # Validation and export
+    validate_and_export(segments, output_dir, min_length, max_length)
+    return segments
+
+
+def dynamic_param_tuning(buffer, base_params):
+    &quot;&quot;&quot;Adjust parameters based on buffer characteristics&quot;&quot;&quot;
+    params = base_params.copy()
+    buffer_duration = len(buffer) / 1000
+
+    # Adjust sensitivity based on buffer length
+    if buffer_duration &gt; 30:
+        params[&#039;silence_thresh&#039;] += 5  # Increase sensitivity
+        params[&#039;min_silence&#039;] = max(300, params[&#039;min_silence&#039;] - 100)
+    elif buffer_duration &lt; 10:
+        params[&#039;silence_thresh&#039;] -= 3  # Decrease sensitivity
+        params[&#039;min_silence&#039;] += 150
+
+    return params
+
+
+def find_optimal_split(chunk, max_length):
+    &quot;&quot;&quot;Find the best split point near target length&quot;&quot;&quot;
+    target_point = max_length * 1000
+    waveform = np.array(chunk.get_array_of_samples())
+
+    # Search ±2 seconds around target length
+    for offset in range(-2000, 2000, 100):
+        current_pos = min(target_point + offset, len(chunk))
+        if current_pos &lt; 5000 or current_pos &gt; (max_length * 1000):
+            continue
+
+        # Check for silent window
+        if is_silent_zone(waveform, current_pos, chunk.frame_rate):
+            return int(current_pos)
+    return None
+
+
+def is_silent_zone(waveform, position, sr, window=500):
+    &quot;&quot;&quot;Detect silence around specified position&quot;&quot;&quot;
+    start = max(0, int(position - window))
+    end = min(len(waveform), int(position + window))
+    segment = waveform[start:end]
+    rms = np.sqrt(np.mean(segment ** 2))
+    return rms &lt; (0.02 * np.max(np.abs(waveform)))
+
+
+def force_split(chunk, max_length):
+    &quot;&quot;&quot;Split long chunks at regular intervals&quot;&quot;&quot;
+    max_samples = max_length * 1000
+    return [chunk[i:i + max_samples] for i in range(0, len(chunk), max_samples)]
+
+
+def validate_and_export(segments, output_dir, min_len, max_len):
+    &quot;&quot;&quot;Quality check and file export&quot;&quot;&quot;
+    for idx, seg in enumerate(segments):
+        duration = len(seg) / 1000
+        if duration &lt; min_len or duration &gt; max_len:
+            raise ValueError(f&quot;Segment {idx} invalid: {duration}s&quot;)
+        seg.export(f&quot;{output_dir}/segmentes_{idx + 1}.wav&quot;, format=&quot;wav&quot;)
+
+
+dynamic_audio_split(&quot;1.wav&quot;, max_length=50, min_length=5)</code></pre>
+<div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br></div></div>

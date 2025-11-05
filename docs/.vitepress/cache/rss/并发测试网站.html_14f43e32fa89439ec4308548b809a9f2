@@ -1,0 +1,80 @@
+<h1 id="并发测试网站" tabindex="-1">并发测试网站 <a class="header-anchor" href="#并发测试网站" aria-label="Permalink to “并发测试网站”">&#8203;</a></h1>
+<div class="language-python line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">python</span><pre><!--::markdown-it-async::anyftva594htvmb2np::--><code>import aiohttp
+import asyncio
+import time
+
+async def test_url_async(session, url):
+    &quot;&quot;&quot;异步测试单个请求&quot;&quot;&quot;
+    try:
+        start_time = time.time()
+        async with session.get(url, timeout=10) as response:
+            end_time = time.time()
+            return {
+                &quot;status&quot;: &quot;success&quot;,
+                &quot;status_code&quot;: response.status,
+                &quot;time&quot;: end_time - start_time
+            }
+    except Exception as e:
+        return {
+            &quot;status&quot;: &quot;fail&quot;,
+            &quot;error&quot;: str(e),
+            &quot;time&quot;: time.time() - start_time
+        }
+
+async def high_concurrency_async_test(url, concurrency, total_requests):
+    &quot;&quot;&quot;异步高并发测试&quot;&quot;&quot;
+    print(f&quot;开始异步测试：URL={url}，并发数={concurrency}，总请求数={total_requests}&quot;)
+    start_time = time.time()
+    
+    success = 0
+    fail = 0
+    total_time = 0
+    max_time = 0
+    min_time = float(&#039;inf&#039;)
+    
+    # 控制并发数（通过信号量）
+    semaphore = asyncio.Semaphore(concurrency)
+    
+    async def bounded_test():
+        async with semaphore:
+            return await test_url_async(session, url)
+    
+    async with aiohttp.ClientSession() as session:
+        # 创建所有任务
+        tasks = [bounded_test() for _ in range(total_requests)]
+        # 并发执行
+        results = await asyncio.gather(*tasks)
+    
+    # 统计结果
+    for result in results:
+        if result[&quot;status&quot;] == &quot;success&quot;:
+            success += 1
+            total_time += result[&quot;time&quot;]
+            max_time = max(max_time, result[&quot;time&quot;])
+            min_time = min(min_time, result[&quot;time&quot;])
+        else:
+            fail += 1
+            # print(f&quot;请求失败：{result[&#039;error&#039;]}&quot;)
+    
+    end_time = time.time()
+    total_duration = end_time - start_time
+    
+    # 打印统计结果（同方案1）
+    print(&quot;\n测试结果：&quot;)
+    print(f&quot;总耗时：{total_duration:.2f}秒&quot;)
+    print(f&quot;总请求数：{total_requests}&quot;)
+    print(f&quot;成功数：{success}，失败数：{fail}&quot;)
+    print(f&quot;成功率：{success/total_requests*100:.2f}%&quot;)
+    if success &gt; 0:
+        print(f&quot;平均响应时间：{total_time/success:.4f}秒&quot;)
+        print(f&quot;最大响应时间：{max_time:.4f}秒&quot;)
+        print(f&quot;最小响应时间：{min_time:.4f}秒&quot;)
+    print(f&quot;QPS（每秒请求数）：{total_requests/total_duration:.2f}&quot;)
+
+# 测试示例
+if __name__ == &quot;__main__&quot;:
+    target_url = &quot;https://020417.xyz&quot;  # 替换为目标URL
+    concurrency = 100  # 并发数（异步可支持更高）
+    total_requests = 2000  # 总请求数
+    asyncio.run(high_concurrency_async_test(target_url, concurrency, total_requests))</code></pre>
+<div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br></div></div>

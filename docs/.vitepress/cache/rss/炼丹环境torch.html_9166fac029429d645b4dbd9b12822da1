@@ -1,0 +1,17 @@
+<h2 id="查看主机支持的cuda版本" tabindex="-1">查看主机支持的cuda版本 <a class="header-anchor" href="#查看主机支持的cuda版本" aria-label="Permalink to “查看主机支持的cuda版本”">&#8203;</a></h2>
+<h3 id="控制面板" tabindex="-1">控制面板 <a class="header-anchor" href="#控制面板" aria-label="Permalink to “控制面板”">&#8203;</a></h3>
+<p>查看支持的最大版本 <img src="https://i-blog.csdnimg.cn/img_convert/f8eeeaa0373ba8510fe391e77af4e1ef.png" alt="控制面板.png" loading="lazy"></p>
+<h2 id="下载支持的cuda版本" tabindex="-1">下载支持的cuda版本 <a class="header-anchor" href="#下载支持的cuda版本" aria-label="Permalink to “下载支持的cuda版本”">&#8203;</a></h2>
+<h3 id="_11-8这个版本比较稳定" tabindex="-1">11.8这个版本比较稳定 <a class="header-anchor" href="#_11-8这个版本比较稳定" aria-label="Permalink to “11.8这个版本比较稳定”">&#8203;</a></h3>
+<p><a href="https://developer.nvidia.com/cuda-toolkit-archive" target="_blank" rel="noreferrer">cuda各个版本下载</a> 一路默认安装即可 <img src="https://i-blog.csdnimg.cn/img_convert/86c47b16e304eb55e0a91747b1f6c3b8.png" alt="cuda.png" loading="lazy"></p>
+<h2 id="下载对应cuda版本的cudnn版本" tabindex="-1">下载对应cuda版本的cudnn版本 <a class="header-anchor" href="#下载对应cuda版本的cudnn版本" aria-label="Permalink to “下载对应cuda版本的cudnn版本”">&#8203;</a></h2>
+<p><a href="https://developer.nvidia.com/cuda-toolkit-archive" target="_blank" rel="noreferrer">各个cudnn版本</a> 一路默认安装即可 <img src="https://i-blog.csdnimg.cn/img_convert/c74c1a7d85d940deead0992fa98fdef9.png" alt="cudnn.png" loading="lazy"></p>
+<h2 id="下载对应cuda的torch版本" tabindex="-1">下载对应cuda的torch版本 <a class="header-anchor" href="#下载对应cuda的torch版本" aria-label="Permalink to “下载对应cuda的torch版本”">&#8203;</a></h2>
+<p><a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noreferrer">torch版本</a></p>
+<div class="language-bash line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">bash</span><pre><!--::markdown-it-async::7a1x3fcpqteuz54zqvx4::--><code>pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118</code></pre>
+<div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br></div></div><p><img src="https://i-blog.csdnimg.cn/img_convert/121fd91e024454a713d304cb2b212b7a.png" alt="torch.png" loading="lazy"></p>
+<h2 id="测试炼丹的环境安装是否安装成功" tabindex="-1">测试炼丹的环境安装是否安装成功 <a class="header-anchor" href="#测试炼丹的环境安装是否安装成功" aria-label="Permalink to “测试炼丹的环境安装是否安装成功”">&#8203;</a></h2>
+<div class="language-python line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">python</span><pre><!--::markdown-it-async::ui9kguz20hoabq4r80wr9m::--><code>import torch
+torch.__version__
+torch.cuda.is_available()</code></pre>
+<div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p><img src="https://i-blog.csdnimg.cn/img_convert/d5ce80ef7bbfddebdd41fa5d9ebc95e7.png" alt="torch_check.png" loading="lazy"></p>

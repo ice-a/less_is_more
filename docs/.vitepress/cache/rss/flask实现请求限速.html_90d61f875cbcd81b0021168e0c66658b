@@ -1,0 +1,56 @@
+<h1 id="flask实现请求限速" tabindex="-1">flask实现请求限速 <a class="header-anchor" href="#flask实现请求限速" aria-label="Permalink to “flask实现请求限速”">&#8203;</a></h1>
+<div class="language-python line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">python</span><pre><!--::markdown-it-async::ovp6tz0pgojkws23teang::--><code>from flask import *
+from loguru import logger
+
+app = Flask(__name__)
+request_rate = {}
+logger.add(&quot;log.log&quot;, rotation=&quot;10 MB&quot;, retention=&quot;10 days&quot;, enqueue=True)
+
+
+# 限制每个ip每秒最多请求5次,超过返回429
+@app.before_request
+def before_request():
+    global request_rate
+    if request.remote_addr in request_rate:
+        if request_rate[request.remote_addr] &gt; 5:
+            logger.warning(
+                {&quot;requeststimes&quot;: request_rate[request.remote_addr], &quot;ip&quot;: request.remote_addr, &quot;msg&quot;: &quot;Too Many Requests&quot;})
+            request_rate[request.remote_addr] += 1
+            return jsonify({&#039;code&#039;: 429, &#039;msg&#039;: &#039;Too Many Requests&#039;}), 429
+        else:
+            logger.info({&quot;requeststimes&quot;: request_rate[request.remote_addr], &quot;ip&quot;: request.remote_addr, &quot;msg&quot;: &quot;OK&quot;})
+            request_rate[request.remote_addr] += 1
+    else:
+        request_rate[request.remote_addr] = 1
+        logger.info({&quot;requeststimes&quot;: request_rate[request.remote_addr], &quot;ip&quot;: request.remote_addr, &quot;msg&quot;: &quot;初次访问&quot;})
+
+
+@app.route(&#039;/&#039;)
+def index():
+    return &#039;Hello, World!&#039;
+
+
+if __name__ == &#039;__main__&#039;:
+    app.run(debug=False)</code></pre>
+<div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br></div></div><h1 id="日志" tabindex="-1">日志 <a class="header-anchor" href="#日志" aria-label="Permalink to “日志”">&#8203;</a></h1>
+<div class="language-python line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">python</span><pre><!--::markdown-it-async::fzp669ij1mn1429k4knpsb::--><code>2025-06-10 13:56:20.565 | INFO     | falskdemo:before_request:32 - {&#039;requeststimes&#039;: 1, &#039;ip&#039;: &#039;127.0.0.1&#039;, &#039;msg&#039;: &#039;初次访问&#039;}
+127.0.0.1 - - [10/Jun/2025 13:56:20] &quot;GET / HTTP/1.1&quot; 200 -
+2025-06-10 13:56:20.674 | INFO     | falskdemo:before_request:28 - {&#039;requeststimes&#039;: 1, &#039;ip&#039;: &#039;127.0.0.1&#039;, &#039;msg&#039;: &#039;OK&#039;}
+127.0.0.1 - - [10/Jun/2025 13:56:20] &quot;GET / HTTP/1.1&quot; 200 -
+2025-06-10 13:56:20.797 | INFO     | falskdemo:before_request:28 - {&#039;requeststimes&#039;: 2, &#039;ip&#039;: &#039;127.0.0.1&#039;, &#039;msg&#039;: &#039;OK&#039;}
+127.0.0.1 - - [10/Jun/2025 13:56:20] &quot;GET / HTTP/1.1&quot; 200 -
+2025-06-10 13:56:20.909 | INFO     | falskdemo:before_request:28 - {&#039;requeststimes&#039;: 3, &#039;ip&#039;: &#039;127.0.0.1&#039;, &#039;msg&#039;: &#039;OK&#039;}
+127.0.0.1 - - [10/Jun/2025 13:56:20] &quot;GET / HTTP/1.1&quot; 200 -
+2025-06-10 13:56:21.031 | INFO     | falskdemo:before_request:28 - {&#039;requeststimes&#039;: 4, &#039;ip&#039;: &#039;127.0.0.1&#039;, &#039;msg&#039;: &#039;OK&#039;}
+127.0.0.1 - - [10/Jun/2025 13:56:21] &quot;GET / HTTP/1.1&quot; 200 -
+2025-06-10 13:56:21.157 | INFO     | falskdemo:before_request:28 - {&#039;requeststimes&#039;: 5, &#039;ip&#039;: &#039;127.0.0.1&#039;, &#039;msg&#039;: &#039;OK&#039;}
+127.0.0.1 - - [10/Jun/2025 13:56:21] &quot;GET / HTTP/1.1&quot; 200 -
+2025-06-10 13:56:21.266 | WARNING  | falskdemo:before_request:23 - {&#039;requeststimes&#039;: 6, &#039;ip&#039;: &#039;127.0.0.1&#039;, &#039;msg&#039;: &#039;Too Many Requests&#039;}
+127.0.0.1 - - [10/Jun/2025 13:56:21] &quot;GET / HTTP/1.1&quot; 429 -
+2025-06-10 13:56:21.362 | WARNING  | falskdemo:before_request:23 - {&#039;requeststimes&#039;: 7, &#039;ip&#039;: &#039;127.0.0.1&#039;, &#039;msg&#039;: &#039;Too Many Requests&#039;}
+127.0.0.1 - - [10/Jun/2025 13:56:21] &quot;GET / HTTP/1.1&quot; 429 -
+2025-06-10 13:56:21.470 | WARNING  | falskdemo:before_request:23 - {&#039;requeststimes&#039;: 8, &#039;ip&#039;: &#039;127.0.0.1&#039;, &#039;msg&#039;: &#039;Too Many Requests&#039;}
+127.0.0.1 - - [10/Jun/2025 13:56:21] &quot;GET / HTTP/1.1&quot; 429 -
+2025-06-10 13:56:21.595 | WARNING  | falskdemo:before_request:23 - {&#039;requeststimes&#039;: 9, &#039;ip&#039;: &#039;127.0.0.1&#039;, &#039;msg&#039;: &#039;Too Many Requests&#039;}
+127.0.0.1 - - [10/Jun/2025 13:56:21] &quot;GET / HTTP/1.1&quot; 429 -</code></pre>
+<div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div>

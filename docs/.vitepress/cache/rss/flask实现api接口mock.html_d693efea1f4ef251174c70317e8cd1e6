@@ -1,0 +1,32 @@
+<h1 id="flask实现api接口" tabindex="-1">flask实现api接口 <a class="header-anchor" href="#flask实现api接口" aria-label="Permalink to “flask实现api接口”">&#8203;</a></h1>
+<div class="language-python line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">python</span><pre><!--::markdown-it-async::0929av66mwuadoy4jiuuv0v::--><code>from flask import Flask, jsonify, request  
+from loguru import logger  
+  
+app = Flask(__name__)  
+  
+  
+# 这里写识别图片的逻辑  
+def ocr_image(image):  
+    logger.info({&quot;status&quot;: &quot;识别图片&quot;})  
+    return &quot;识别成功的结果&quot;  
+  
+  
+# 上传图片  
+@app.route(&#039;/upload&#039;, methods=[&#039;POST&#039;])  
+def upload():  
+    if request.method == &#039;POST&#039;:  
+        f = request.files[&#039;file&#039;]  
+        f.save(f.filename)  
+        try:  
+            result = ocr_image(f.filename)  
+            return jsonify({&#039;code&#039;: 200, &#039;msg&#039;: &#039;识别成功&#039;, &#039;data&#039;: result})  
+        except Exception as e:  
+            logger.error(e)  
+            return jsonify({&#039;code&#039;: 500, &#039;msg&#039;: &#039;识别失败&#039;, &#039;data&#039;: str(e)})  
+    else:  
+        return jsonify({&#039;code&#039;: 400, &#039;msg&#039;: &#039;请求方式错误&#039;})  
+  
+  
+if __name__ == &#039;__main__&#039;:  
+    app.run(host=&#039;0.0.0.0&#039;, port=8080, debug=True)</code></pre>
+<div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br></div></div>

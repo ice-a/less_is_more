@@ -1,0 +1,349 @@
+<Hitokoto /><AdCarousel /><h1 id="关于" tabindex="-1">关于 <a class="header-anchor" href="#关于" aria-label="Permalink to “关于”">&#8203;</a></h1>
+<h2 id="个人简介" tabindex="-1">个人简介 <a class="header-anchor" href="#个人简介" aria-label="Permalink to “个人简介”">&#8203;</a></h2>
+<p>我是一名经验丰富的全栈工程师，专注于网络爬虫、逆向工程和前后端开发。拥有多年实际项目经验，擅长解决复杂的技术挑战，尤其在数据采集、API逆向、自动化工具开发方面有深入研究。</p>
+<h2 id="技术栈" tabindex="-1">技术栈 <a class="header-anchor" href="#技术栈" aria-label="Permalink to “技术栈”">&#8203;</a></h2>
+<p>持续更新中,在进行学习中,列出来不是全部都会使用</p>
+<h3 id="爬虫与数据采集" tabindex="-1">爬虫与数据采集 <a class="header-anchor" href="#爬虫与数据采集" aria-label="Permalink to “爬虫与数据采集”">&#8203;</a></h3>
+<ul>
+<li><strong>核心技能</strong>：网页爬虫、分布式爬虫、异步爬虫、反爬策略绕过、数据清洗与结构化</li>
+<li><strong>主要工具</strong>：
+<ul>
+<li>Python生态：Scrapy、Requests、BeautifulSoup、PyQuery、lxml、urllib</li>
+<li>异步爬虫：aiohttp、asyncio、Playwright、Selenium、DrissionPage、httpx</li>
+<li>爬虫框架：Scrapy-Redis、Crawlab、Gerapy、SpiderKeeper</li>
+<li>验证码识别：Tesseract OCR、CNN模型自定义训练、Yolo训练、ddddocr、EasyOCR</li>
+<li>数据存储：MongoDB、MySQL、PostgreSQL、SQLite、Elasticsearch</li>
+</ul>
+</li>
+</ul>
+<h3 id="逆向工程" tabindex="-1">逆向工程 <a class="header-anchor" href="#逆向工程" aria-label="Permalink to “逆向工程”">&#8203;</a></h3>
+<ul>
+<li><strong>核心技能</strong>：JavaScript逆向、WebAPI逆向、App逆向、协议分析</li>
+<li><strong>主要工具</strong>：
+<ul>
+<li>网页逆向：Chrome DevTools、Fiddler、Charles、Burp Suite</li>
+<li>JS解析：AST、JSDecode、反混淆</li>
+<li>App逆向：Frida、Xposed、IDA Pro、Hopper</li>
+<li>加密算法：RSA、AES、MD5、SHA系列，自定义加密算法分析</li>
+</ul>
+</li>
+</ul>
+<h3 id="反爬技术与解决方案" tabindex="-1">反爬技术与解决方案 <a class="header-anchor" href="#反爬技术与解决方案" aria-label="Permalink to “反爬技术与解决方案”">&#8203;</a></h3>
+<ul>
+<li><strong>核心技能</strong>：反爬策略识别与绕过、浏览器指纹模拟、验证码识别、IP代理池管理</li>
+<li><strong>主要技术</strong>：
+<ul>
+<li>浏览器指纹处理：Puppeteer指纹修改、Playwright stealth插件、Canvas指纹模拟</li>
+<li>请求头优化：User-Agent池、Referer控制、Cookie管理、自定义Headers</li>
+<li>IP代理：动态IP池、Socks5/HTTP代理、代理健康检查</li>
+<li>行为模拟：人类行为仿真、随机延时、鼠标轨迹生成、分布式请求</li>
+<li>验证码处理：OCR识别、图像预处理、深度学习模型、打码平台集成</li>
+<li>动态渲染处理：无头浏览器、渲染等待优化、Ajax数据捕获</li>
+<li>WebSocket分析：WebSocket协议逆向、实时数据捕获</li>
+</ul>
+</li>
+</ul>
+<h3 id="后端开发" tabindex="-1">后端开发 <a class="header-anchor" href="#后端开发" aria-label="Permalink to “后端开发”">&#8203;</a></h3>
+<ul>
+<li><strong>核心技能</strong>：RESTful API设计、微服务架构、数据库优化、缓存策略、消息队列、认证授权</li>
+<li><strong>主要技术</strong>：
+<ul>
+<li>语言：Python、Go、Node.js、Java</li>
+<li>框架：Flask、FastAPI、Django、Express、Spring Boot</li>
+<li>数据库：MySQL、MongoDB、Redis、PostgreSQL、SQLite、Oracle</li>
+<li>缓存：Redis、Memcached、Caffeine</li>
+<li>消息队列：RabbitMQ、Kafka、Redis Streams</li>
+<li>认证授权：JWT、OAuth2.0、Session、RBAC</li>
+<li>部署：Docker、Kubernetes、Nginx、CI/CD (GitHub Actions、Jenkins、GitLab CI)</li>
+</ul>
+</li>
+</ul>
+<h3 id="前端开发" tabindex="-1">前端开发 <a class="header-anchor" href="#前端开发" aria-label="Permalink to “前端开发”">&#8203;</a></h3>
+<ul>
+<li><strong>核心技能</strong>：响应式设计、SPA开发、组件化开发、性能优化、跨端开发</li>
+<li><strong>主要技术</strong>：
+<ul>
+<li>语言：HTML5、CSS3、JavaScript、TypeScript</li>
+<li>框架：Vue.js (Vue2/Vue3)、React.js、Next.js、Nuxt.js</li>
+<li>UI组件：Element UI、Ant Design、Bootstrap、Tailwind CSS、Ant Design Vue</li>
+<li>构建工具：Webpack、Vite、Rollup、Gulp</li>
+<li>状态管理：Vuex、Redux、Pinia、Zustand、MobX</li>
+<li>网络请求：Axios、Fetch API、GraphQL</li>
+<li>跨端开发：uni-app、Taro、React Native</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据处理与分析" tabindex="-1">数据处理与分析 <a class="header-anchor" href="#数据处理与分析" aria-label="Permalink to “数据处理与分析”">&#8203;</a></h3>
+<ul>
+<li><strong>核心技能</strong>：数据清洗、数据挖掘、数据分析、可视化、特征工程</li>
+<li><strong>主要技术</strong>：
+<ul>
+<li>数据处理：Pandas、NumPy、Scipy、OpenCV</li>
+<li>数据挖掘：Scikit-learn、PyTorch、TensorFlow、XGBoost、LightGBM</li>
+<li>可视化：Matplotlib、Seaborn、ECharts、D3.js、Plotly</li>
+</ul>
+</li>
+</ul>
+<h3 id="大数据技术" tabindex="-1">大数据技术 <a class="header-anchor" href="#大数据技术" aria-label="Permalink to “大数据技术”">&#8203;</a></h3>
+<ul>
+<li><strong>核心技能</strong>：分布式计算、大数据存储、实时数据处理、数据湖构建</li>
+<li><strong>主要技术</strong>：
+<ul>
+<li>大数据框架：Hadoop、Spark、Flink、Storm</li>
+<li>存储系统：HDFS、HBase、Cassandra、Elasticsearch、ClickHouse</li>
+<li>数据湖：AWS S3、MinIO、Delta Lake、Iceberg</li>
+<li>ETL工具：Apache Airflow、Kettle、Talend</li>
+<li>实时处理：Kafka Streams、Spark Streaming、Flink SQL</li>
+<li>大数据查询：Hive、Presto、Trino、Impala</li>
+</ul>
+</li>
+</ul>
+<h3 id="安全技术" tabindex="-1">安全技术 <a class="header-anchor" href="#安全技术" aria-label="Permalink to “安全技术”">&#8203;</a></h3>
+<ul>
+<li><strong>核心技能</strong>：网络安全、应用安全、渗透测试、安全审计</li>
+<li><strong>主要技术</strong>：
+<ul>
+<li>安全工具：Nmap、Burp Suite、OWASP ZAP、Metasploit</li>
+<li>Web安全：XSS防护、CSRF防护、SQL注入防护、代码审计</li>
+<li>网络安全：防火墙配置、入侵检测、网络流量分析</li>
+<li>加密技术：SSL/TLS、HTTPS、公钥加密、哈希函数</li>
+<li>安全标准：OWASP Top 10、CIS基准、GDPR合规</li>
+<li>容器安全：Docker安全、Kubernetes安全策略、镜像扫描</li>
+</ul>
+</li>
+</ul>
+<h2 id="项目经验" tabindex="-1">项目经验 <a class="header-anchor" href="#项目经验" aria-label="Permalink to “项目经验”">&#8203;</a></h2>
+<p>ai生成的项目经验</p>
+<h3 id="爬虫与数据采集项目经验" tabindex="-1">爬虫与数据采集项目经验 <a class="header-anchor" href="#爬虫与数据采集项目经验" aria-label="Permalink to “爬虫与数据采集项目经验”">&#8203;</a></h3>
+<h4 id="电商大数据采集平台" tabindex="-1">电商大数据采集平台 <a class="header-anchor" href="#电商大数据采集平台" aria-label="Permalink to “电商大数据采集平台”">&#8203;</a></h4>
+<ul>
+<li><strong>项目描述</strong>：开发了覆盖多个主流电商平台的全品类商品数据采集系统</li>
+<li><strong>技术栈</strong>：Python、Scrapy、Redis、MongoDB、Docker、分布式架构</li>
+<li><strong>主要成果</strong>：
+<ul>
+<li>构建了支持100+电商网站的通用爬虫框架，覆盖商品、评价、店铺等多维度数据</li>
+<li>实现了基于消息队列的分布式爬虫架构，支持水平扩展</li>
+<li>设计了智能任务调度系统，根据网站反爬策略动态调整采集策略</li>
+<li>数据采集效率提升500%，单节点日采集量突破500万条</li>
+</ul>
+</li>
+</ul>
+<h4 id="新闻资讯实时监控系统" tabindex="-1">新闻资讯实时监控系统 <a class="header-anchor" href="#新闻资讯实时监控系统" aria-label="Permalink to “新闻资讯实时监控系统”">&#8203;</a></h4>
+<ul>
+<li><strong>项目描述</strong>：开发了面向媒体行业的实时新闻监控与分析系统</li>
+<li><strong>技术栈</strong>：Python、Asyncio、Aiohttp、PostgreSQL、Celery</li>
+<li><strong>主要成果</strong>：
+<ul>
+<li>实现了异步爬虫架构，支持500+新闻源的实时监控</li>
+<li>开发了基于自然语言处理的新闻分类与情感分析模块</li>
+<li>设计了增量更新机制，避免重复采集，降低服务器负载</li>
+<li>支持毫秒级新闻推送，准确率达99.9%以上</li>
+</ul>
+</li>
+</ul>
+<h3 id="逆向工程项目经验" tabindex="-1">逆向工程项目经验 <a class="header-anchor" href="#逆向工程项目经验" aria-label="Permalink to “逆向工程项目经验”">&#8203;</a></h3>
+<h4 id="企业级api逆向与复制" tabindex="-1">企业级API逆向与复制 <a class="header-anchor" href="#企业级api逆向与复制" aria-label="Permalink to “企业级API逆向与复制”">&#8203;</a></h4>
+<ul>
+<li><strong>项目描述</strong>：对目标网站/应用进行逆向分析，提取核心API逻辑并重新实现</li>
+<li><strong>技术栈</strong>：JavaScript、Node.js、Python、加密算法、AST解析</li>
+<li><strong>主要成果</strong>：
+<ul>
+<li>成功逆向分析50+复杂API，包括签名算法、加密传输等</li>
+<li>构建了自动化测试框架，确保API兼容性</li>
+<li>为业务系统提供了稳定的数据接口，服务可用性达99.9%</li>
+</ul>
+</li>
+</ul>
+<h4 id="移动应用协议分析与模拟" tabindex="-1">移动应用协议分析与模拟 <a class="header-anchor" href="#移动应用协议分析与模拟" aria-label="Permalink to “移动应用协议分析与模拟”">&#8203;</a></h4>
+<ul>
+<li><strong>项目描述</strong>：对多款高价值移动应用进行协议分析，实现自动化数据采集</li>
+<li><strong>技术栈</strong>：Frida、Charles、Python、加密算法、Android开发</li>
+<li><strong>主要成果</strong>：
+<ul>
+<li>开发了基于Frida的动态Hook框架，实时分析应用内部逻辑</li>
+<li>实现了应用证书双向验证的绕过方案</li>
+<li>构建了模拟应用网络请求的自动化工具，支持批量数据采集</li>
+<li>成功逆向分析了30+款高安全性移动应用的核心协议</li>
+</ul>
+</li>
+</ul>
+<h3 id="反爬技术项目经验" tabindex="-1">反爬技术项目经验 <a class="header-anchor" href="#反爬技术项目经验" aria-label="Permalink to “反爬技术项目经验”">&#8203;</a></h3>
+<h4 id="企业级反爬绕过解决方案" tabindex="-1">企业级反爬绕过解决方案 <a class="header-anchor" href="#企业级反爬绕过解决方案" aria-label="Permalink to “企业级反爬绕过解决方案”">&#8203;</a></h4>
+<ul>
+<li><strong>项目描述</strong>：为某大型电商数据采集项目开发了完整的反爬绕过系统，应对复杂的反爬机制</li>
+<li><strong>技术栈</strong>：Python、Playwright、Scrapy、Redis、机器学习、深度学习</li>
+<li><strong>主要成果</strong>：
+<ul>
+<li>成功绕过Cloudflare、Distil Networks等高级反爬系统</li>
+<li>实现了自动化的浏览器指纹生成与管理系统，模拟10万+不同用户环境</li>
+<li>开发了基于深度学习的验证码自动识别系统，准确率达98%</li>
+<li>构建了高性能IP代理池，支持自动检测、剔除和更新，保证99%可用性</li>
+</ul>
+</li>
+</ul>
+<h4 id="浏览器指纹模拟与行为仿真平台" tabindex="-1">浏览器指纹模拟与行为仿真平台 <a class="header-anchor" href="#浏览器指纹模拟与行为仿真平台" aria-label="Permalink to “浏览器指纹模拟与行为仿真平台”">&#8203;</a></h4>
+<ul>
+<li><strong>项目描述</strong>：开发了专业的浏览器环境模拟平台，用于绕过基于行为和指纹的反爬系统</li>
+<li><strong>技术栈</strong>：Python、Puppeteer、Playwright、JavaScript、WebSocket</li>
+<li><strong>主要成果</strong>：
+<ul>
+<li>实现了30+种浏览器指纹特征的自定义模拟</li>
+<li>开发了基于机器学习的用户行为生成算法，模拟真实用户操作</li>
+<li>构建了浏览器环境沙箱系统，支持多环境并行运行</li>
+<li>成功绕过了95%以上的基于浏览器指纹的反爬系统</li>
+</ul>
+</li>
+</ul>
+<h3 id="后端开发项目经验" tabindex="-1">后端开发项目经验 <a class="header-anchor" href="#后端开发项目经验" aria-label="Permalink to “后端开发项目经验”">&#8203;</a></h3>
+<h4 id="微服务架构api网关" tabindex="-1">微服务架构API网关 <a class="header-anchor" href="#微服务架构api网关" aria-label="Permalink to “微服务架构API网关”">&#8203;</a></h4>
+<ul>
+<li><strong>项目描述</strong>：设计并实现了基于微服务架构的高性能API网关系统</li>
+<li><strong>技术栈</strong>：Go、FastAPI、Docker、Kubernetes、Redis、RabbitMQ</li>
+<li><strong>主要成果</strong>：
+<ul>
+<li>实现了请求路由、负载均衡、熔断限流等核心功能</li>
+<li>开发了基于JWT的统一认证授权系统</li>
+<li>构建了实时监控与告警系统，支持秒级问题响应</li>
+<li>系统支持每秒10万+请求，延迟低于10ms</li>
+</ul>
+</li>
+</ul>
+<h4 id="分布式缓存服务" tabindex="-1">分布式缓存服务 <a class="header-anchor" href="#分布式缓存服务" aria-label="Permalink to “分布式缓存服务”">&#8203;</a></h4>
+<ul>
+<li><strong>项目描述</strong>：开发了高性能分布式缓存服务，为业务系统提供缓存支持</li>
+<li><strong>技术栈</strong>：Java、Spring Boot、Redis Cluster、MySQL、Docker</li>
+<li><strong>主要成果</strong>：
+<ul>
+<li>实现了多级缓存架构，支持本地缓存+分布式缓存</li>
+<li>开发了缓存预热、缓存穿透、缓存雪崩防护机制</li>
+<li>构建了缓存监控与统计系统，提供实时缓存命中率分析</li>
+<li>系统性能提升500%，大幅降低数据库压力</li>
+</ul>
+</li>
+</ul>
+<h3 id="前端开发项目经验" tabindex="-1">前端开发项目经验 <a class="header-anchor" href="#前端开发项目经验" aria-label="Permalink to “前端开发项目经验”">&#8203;</a></h3>
+<h4 id="全栈数据可视化平台" tabindex="-1">全栈数据可视化平台 <a class="header-anchor" href="#全栈数据可视化平台" aria-label="Permalink to “全栈数据可视化平台”">&#8203;</a></h4>
+<ul>
+<li><strong>项目描述</strong>：开发了企业级数据可视化平台，支持实时数据监控、自定义报表生成</li>
+<li><strong>技术栈</strong>：Vue.js、ECharts、Flask、MySQL、Redis、WebSocket</li>
+<li><strong>主要成果</strong>：
+<ul>
+<li>实现了拖拽式报表设计器，用户可自定义数据展示</li>
+<li>支持百万级数据量的实时渲染与交互</li>
+<li>优化了前端性能，页面加载速度提升70%</li>
+<li>开发了响应式设计，支持多设备访问</li>
+</ul>
+</li>
+</ul>
+<h4 id="电商管理系统前端重构" tabindex="-1">电商管理系统前端重构 <a class="header-anchor" href="#电商管理系统前端重构" aria-label="Permalink to “电商管理系统前端重构”">&#8203;</a></h4>
+<ul>
+<li><strong>项目描述</strong>：对现有电商管理系统进行技术栈升级与前端重构</li>
+<li><strong>技术栈</strong>：React、TypeScript、Ant Design、Redux、Next.js、Webpack</li>
+<li><strong>主要成果</strong>：
+<ul>
+<li>采用React+TypeScript重构前端代码，提高代码可维护性</li>
+<li>实现了基于Ant Design Pro的组件化开发</li>
+<li>开发了权限管理、数据统计、订单管理等核心模块</li>
+<li>前端性能优化，页面加载时间从3秒降至0.8秒</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据处理与分析项目经验" tabindex="-1">数据处理与分析项目经验 <a class="header-anchor" href="#数据处理与分析项目经验" aria-label="Permalink to “数据处理与分析项目经验”">&#8203;</a></h3>
+<h4 id="大数据分析与预测系统" tabindex="-1">大数据分析与预测系统 <a class="header-anchor" href="#大数据分析与预测系统" aria-label="Permalink to “大数据分析与预测系统”">&#8203;</a></h4>
+<ul>
+<li><strong>项目描述</strong>：开发了基于机器学习的数据分析与预测系统</li>
+<li><strong>技术栈</strong>：Python、Pandas、Scikit-learn、PyTorch、Flask、MySQL</li>
+<li><strong>主要成果</strong>：
+<ul>
+<li>实现了数据清洗、特征工程、模型训练、预测评估全流程</li>
+<li>开发了基于XGBoost的销售预测模型，准确率达95%</li>
+<li>构建了自动化数据处理流水线，支持每日数据更新</li>
+<li>为业务决策提供了数据支持，帮助提升销售额20%</li>
+</ul>
+</li>
+</ul>
+<h4 id="图像识别与分类系统" tabindex="-1">图像识别与分类系统 <a class="header-anchor" href="#图像识别与分类系统" aria-label="Permalink to “图像识别与分类系统”">&#8203;</a></h4>
+<ul>
+<li><strong>项目描述</strong>：开发了基于深度学习的图像识别与分类系统</li>
+<li><strong>技术栈</strong>：Python、TensorFlow、OpenCV、Keras、Flask、Docker</li>
+<li><strong>主要成果</strong>：
+<ul>
+<li>实现了基于CNN的图像分类模型，准确率达99%</li>
+<li>开发了图像预处理、特征提取、模型优化等核心模块</li>
+<li>构建了REST API服务，支持批量图像识别</li>
+<li>成功应用于产品质检、安防监控等场景</li>
+</ul>
+</li>
+</ul>
+<h3 id="大数据技术项目经验" tabindex="-1">大数据技术项目经验 <a class="header-anchor" href="#大数据技术项目经验" aria-label="Permalink to “大数据技术项目经验”">&#8203;</a></h3>
+<h4 id="分布式计算平台" tabindex="-1">分布式计算平台 <a class="header-anchor" href="#分布式计算平台" aria-label="Permalink to “分布式计算平台”">&#8203;</a></h4>
+<ul>
+<li><strong>项目描述</strong>：构建了基于Hadoop生态的分布式计算平台</li>
+<li><strong>技术栈</strong>：Hadoop、Spark、Hive、HBase、Kafka、Airflow</li>
+<li><strong>主要成果</strong>：
+<ul>
+<li>实现了PB级数据的分布式存储与计算</li>
+<li>开发了基于Spark的ETL任务，数据处理效率提升10倍</li>
+<li>构建了数据仓库，支持多维度数据分析</li>
+<li>系统支持水平扩展，满足业务增长需求</li>
+</ul>
+</li>
+</ul>
+<h4 id="实时数据处理系统" tabindex="-1">实时数据处理系统 <a class="header-anchor" href="#实时数据处理系统" aria-label="Permalink to “实时数据处理系统”">&#8203;</a></h4>
+<ul>
+<li><strong>项目描述</strong>：开发了基于流处理的实时数据处理系统</li>
+<li><strong>技术栈</strong>：Flink、Kafka、Redis、Elasticsearch、Docker</li>
+<li><strong>主要成果</strong>：
+<ul>
+<li>实现了毫秒级数据处理与分析</li>
+<li>开发了基于Flink SQL的数据处理引擎，支持复杂业务规则</li>
+<li>构建了实时监控与告警系统</li>
+<li>系统支持每秒百万级数据处理，延迟低于50ms</li>
+</ul>
+</li>
+</ul>
+<h3 id="安全技术项目经验" tabindex="-1">安全技术项目经验 <a class="header-anchor" href="#安全技术项目经验" aria-label="Permalink to “安全技术项目经验”">&#8203;</a></h3>
+<h4 id="企业级网络安全审计系统" tabindex="-1">企业级网络安全审计系统 <a class="header-anchor" href="#企业级网络安全审计系统" aria-label="Permalink to “企业级网络安全审计系统”">&#8203;</a></h4>
+<ul>
+<li><strong>项目描述</strong>：开发了面向企业内部的网络安全审计与防护系统</li>
+<li><strong>技术栈</strong>：Python、Nmap、Burp Suite、ELK Stack、Docker</li>
+<li><strong>主要成果</strong>：
+<ul>
+<li>实现了自动化漏洞扫描与评估</li>
+<li>开发了网络流量分析与异常检测模块</li>
+<li>构建了安全事件响应与处理流程</li>
+<li>成功发现并修复了50+安全漏洞</li>
+</ul>
+</li>
+</ul>
+<h4 id="web应用安全加固" tabindex="-1">Web应用安全加固 <a class="header-anchor" href="#web应用安全加固" aria-label="Permalink to “Web应用安全加固”">&#8203;</a></h4>
+<ul>
+<li><strong>项目描述</strong>：对现有Web应用进行安全加固，防护常见Web攻击</li>
+<li><strong>技术栈</strong>：OWASP ZAP、渗透测试、JavaScript、Python、安全编码</li>
+<li><strong>主要成果</strong>：
+<ul>
+<li>实现了XSS、CSRF、SQL注入等常见攻击的防护</li>
+<li>开发了输入验证、输出编码、安全日志等核心模块</li>
+<li>构建了自动化安全测试流程，集成到CI/CD pipeline</li>
+<li>应用安全性提升至OWASP Top 10全部通过</li>
+</ul>
+</li>
+</ul>
+<h2 id="教育背景" tabindex="-1">教育背景 <a class="header-anchor" href="#教育背景" aria-label="Permalink to “教育背景”">&#8203;</a></h2>
+<ul>
+<li><strong>计算机科学与技术</strong> | 专科</li>
+</ul>
+<h2 id="联系方式" tabindex="-1">联系方式 <a class="header-anchor" href="#联系方式" aria-label="Permalink to “联系方式”">&#8203;</a></h2>
+<ul>
+<li><strong>邮箱</strong>：<a href="mailto:contact@example.com" target="_blank" rel="noreferrer">contact@example.com</a></li>
+<li><strong>GitHub</strong>：<a href="https://github.com/example" target="_blank" rel="noreferrer">github.com/example</a></li>
+<li><strong>个人网站</strong>：<a href="https://example.com" target="_blank" rel="noreferrer">example.com</a></li>
+</ul>
+<h2 id="个人优势" tabindex="-1">个人优势 <a class="header-anchor" href="#个人优势" aria-label="Permalink to “个人优势”">&#8203;</a></h2>
+<ul>
+<li><strong>技术全面</strong>：同时掌握前后端、爬虫、逆向等多种技术，能够独立完成全流程开发</li>
+<li><strong>解决问题能力强</strong>：面对复杂技术挑战，能够快速分析问题并找到最佳解决方案</li>
+<li><strong>学习能力</strong>：持续关注技术前沿，不断学习新技术并应用到实际项目中</li>
+<li><strong>团队协作</strong>：良好的沟通能力和团队协作精神，能够与产品、设计等角色有效配合</li>
+</ul>
+<p>如果你有爬虫、逆向、前后端开发相关的项目需求，欢迎联系我！</p>
