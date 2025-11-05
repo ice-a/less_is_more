@@ -1,55 +1,55 @@
 {
-  "hash": "610422bc",
+  "hash": "bb234a12",
   "configHash": "4cb8045d",
-  "lockfileHash": "9b81594a",
-  "browserHash": "a0697024",
+  "lockfileHash": "c27e4098",
+  "browserHash": "aef96aed",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "07c66bc0",
+      "fileHash": "e322a0f5",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "7eebf753",
+      "fileHash": "9e050527",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
       "src": "../../../../node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "b3d6f7b9",
+      "fileHash": "5496a6d9",
       "needsInterop": false
     },
     "vitepress > @vueuse/integrations/useFocusTrap": {
       "src": "../../../../node_modules/@vueuse/integrations/useFocusTrap.mjs",
       "file": "vitepress___@vueuse_integrations_useFocusTrap.js",
-      "fileHash": "062174cd",
+      "fileHash": "0e042e3b",
       "needsInterop": false
     },
     "vitepress > mark.js/src/vanilla.js": {
       "src": "../../../../node_modules/mark.js/src/vanilla.js",
       "file": "vitepress___mark__js_src_vanilla__js.js",
-      "fileHash": "edf2c827",
+      "fileHash": "4949daa5",
       "needsInterop": false
     },
     "vitepress > minisearch": {
       "src": "../../../../node_modules/minisearch/dist/es/index.js",
       "file": "vitepress___minisearch.js",
-      "fileHash": "1536d930",
+      "fileHash": "3e4c52db",
       "needsInterop": false
     },
     "vitepress-plugin-image-viewer": {
       "src": "../../../../node_modules/vitepress-plugin-image-viewer/lib/viewer.js",
       "file": "vitepress-plugin-image-viewer.js",
-      "fileHash": "d3442990",
+      "fileHash": "89e826d3",
       "needsInterop": false
     },
     "@waline/client/component": {
       "src": "../../../../node_modules/@waline/client/dist/component.js",
       "file": "@waline_client_component.js",
-      "fileHash": "1e8eda6f",
+      "fileHash": "334fb160",
       "needsInterop": false
     }
   },

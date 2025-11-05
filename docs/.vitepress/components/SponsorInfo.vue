@@ -14,7 +14,7 @@
         class="bmc-button"
       >
         <img 
-          src="" 
+          :src="buyMeCoffeeImageUrl" 
           alt="Buy Me A Coffee" 
           class="bmc-image"
           :style="{ height: '40px' }"
@@ -82,17 +82,22 @@ export default {
     // 标题
     title: {
       type: String,
-      default: '支持我们'
+      default: '支持'
     },
     // 描述
     description: {
       type: String,
-      default: '如果您觉得这个项目对您有帮助，请考虑赞助我们一杯咖啡！'
+      default: '赞助一杯咖啡！'
     },
     // Buy Me A Coffee URL
     buyMeCoffeeUrl: {
       type: String,
       default: 'https://www.buymeacoffee.com/leemuzi'
+    },
+    // Buy Me A Coffee 按钮图片URL
+    buyMeCoffeeImageUrl: {
+      type: String,
+      default: 'https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png'
     },
     // 支付平台信息
     platforms: {
