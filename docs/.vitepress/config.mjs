@@ -98,7 +98,7 @@ export default defineConfig({
       },
     ],
     footer: {
-      message: 'Released under the MIT License.',
+      message: '<a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备2021025932号-2</a>',
       copyright: 'Copyright © 2023-present 爱喝水的木子'
     },
     search: {
