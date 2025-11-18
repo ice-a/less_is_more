@@ -1,10 +1,5 @@
 ---
 title: 使用opencv将透明背景图片转变为白色背景图片
-tag:
-- python
-- cv
-category:
-- code
 ---
 
 ``` python

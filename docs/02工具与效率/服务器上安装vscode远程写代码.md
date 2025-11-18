@@ -1,11 +1,5 @@
 ---
 title: 服务器上安装vscode-远程写代码
-tag:
-- code
-- server
-- dev
-category:
-- dev
 ---
 # 服务器上安装vscode,远程写代码
 

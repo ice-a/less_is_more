@@ -1,11 +1,5 @@
 ---
 title: 生成docx文件
-tag:
-- ppt
-- office
-- python
-category:
-- python
 ---
 
 # 脚本生成docx文件

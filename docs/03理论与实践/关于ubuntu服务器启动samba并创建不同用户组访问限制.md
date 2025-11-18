@@ -1,10 +1,5 @@
 ---
 title: 关于ubuntu服务器启动samba并创建不同用户组访问限制
-tag:
-- linux
-- samba
-category:
-- server
 ---
 
 ## 安装samba

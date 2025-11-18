@@ -1,11 +1,5 @@
 ---
 title: 关于m4a文件转成wav文件
-tag:
-- ffmpeg
-- python
-- code
-category:
-- code
 ---
 
 m4a文件转为16bit,单声道,采样率为48kHz

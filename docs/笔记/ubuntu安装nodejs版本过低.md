@@ -1,12 +1,5 @@
 ---
 title: ubuntu安装nodejs版本过低问题
-tag:
-- opensource
-- nodejs
-- 版本
-- 环境
-category:
-- 镜像
 ---
 
 

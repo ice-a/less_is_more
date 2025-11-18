@@ -1,12 +1,5 @@
 ---
 title: 使用cv统计视频时长
-tag:
-- python
-- cv
-- 文件
-- 视频
-category:
-- python
 ---
 
 ```python

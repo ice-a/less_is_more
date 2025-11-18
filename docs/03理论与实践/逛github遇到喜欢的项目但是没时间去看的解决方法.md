@@ -1,11 +1,5 @@
 ---
 title: 逛github遇到喜欢的项目但是没时间去看的解决方法
-tag:
-- github
-- sync
-- python
-category:
-- code
 ---
 
 # clone

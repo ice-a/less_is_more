@@ -1,9 +1,5 @@
 ---
 title: python相见恨晚的库
-tag:
-- python
-category:
-- python
 ---
 
 # [数据来源于awesome-python项目](https://github.com/jobbole/awesome-python-cn)

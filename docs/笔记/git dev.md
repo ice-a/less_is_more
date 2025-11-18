@@ -1,9 +1,5 @@
 ---
 title: git
-tag:
-- git
-category:
-- git
 ---
 # 收藏
 [GitHub - hehehai/x-hiring: 🤗 每日最新招聘信息，使用 Google AI 提取摘要](https://github.com/hehehai/x-hiring?tab=readme-ov-file)

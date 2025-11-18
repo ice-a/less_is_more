@@ -1,10 +1,5 @@
 ---
 title: others
-date: 2024-07-25
-tag:
-- github
-category:
-- github
 ---
 # 
 ## 临时

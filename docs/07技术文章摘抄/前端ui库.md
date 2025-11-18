@@ -1,6 +1,5 @@
 ---
-title:前端ui库
-date:2024-07-19
+title: 前端ui库
 ---
 
 - mudi

@@ -1,10 +1,5 @@
 ---
 title: 常用的js代码片段
-tag:
-- javascript
-- code
-category:
-- code
 ---
 
 # 获取选择到的字

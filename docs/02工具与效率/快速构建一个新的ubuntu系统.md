@@ -1,9 +1,5 @@
 ---
 title: multipass
-tag:
-- others
-category:
-- others
 ---
 # 安装multipass
 

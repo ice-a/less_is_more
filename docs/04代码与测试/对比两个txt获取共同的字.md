@@ -1,11 +1,5 @@
 ---
 title: 对比两个txt获取共同的字
-tag:
-- python
-category:
-- python
-id: 35
-alias: 35
 ---
 
 ```python

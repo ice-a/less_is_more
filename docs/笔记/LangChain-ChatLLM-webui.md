@@ -1,14 +1,5 @@
 ---
 title: 利用LangChain和大型语言模型系列模型, 提供基于本地知识的自动问答应用
-tag:
-- paddlepaddle
-- LangChain
-- python
-- gpu
-- 自动问答
-category:
-- code
-- 想法
 ---
 # 安装环境
 

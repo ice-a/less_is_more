@@ -1,10 +1,5 @@
 ---
 title: opencv 画图相关
-tag:
-- opencv
-- python
-category:
-- python
 ---
 
 # 基本绘图

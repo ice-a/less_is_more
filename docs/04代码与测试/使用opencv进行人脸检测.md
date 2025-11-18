@@ -1,11 +1,5 @@
 ---
 title: 使用opencv进行人脸检测
-tag:
-- python
-- cv
-- 检测
-category:
-- AI
 ---
 
 对特定图像进行识别，最关键的是要有识别对象的特征文件。OpenCV已经内置了人脸识别特征文件，我们只要使用OpenCV的CascadeClassifier类即可进行识别。

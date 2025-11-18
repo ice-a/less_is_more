@@ -1,10 +1,5 @@
 ---
 title: 高版本labelme格式转换为低版本格式
-tag:
-- python
-- labelme
-category:
-- code
 ---
 
 ```python

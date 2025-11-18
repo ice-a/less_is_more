@@ -1,10 +1,5 @@
 ---
 title: 生活不止眼前的苟且,还有远方的苟且
-icon: pen-to-square
-tag:
-- 生活
-category:
-- 想法
 ---
 
 # 已经去过的地方

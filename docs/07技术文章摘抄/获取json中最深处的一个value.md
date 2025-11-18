@@ -1,9 +1,5 @@
 ---
 title: 获取json中最深处的一个value
-tag:
-- python
-category:
-- code
 ---
 
 ```python

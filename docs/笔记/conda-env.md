@@ -1,9 +1,5 @@
 ---
 title: conda-env
-tag:
-- env
-category:
-- env
 ---
 
 # 下载合适的版本

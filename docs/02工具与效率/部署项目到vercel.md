@@ -1,11 +1,5 @@
 ---
 title: 部署项目到vercel
-date: 2024-07-12
-tag:
-- devops
-- learn
-category:
-- learn
 ---
 # 
 # 准备工作

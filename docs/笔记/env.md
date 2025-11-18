@@ -1,9 +1,5 @@
 ---
 title: 激活工具
-tag:
-- env
-category:
-- env
 ---
 
 激活工具

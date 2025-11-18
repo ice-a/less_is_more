@@ -1,12 +1,5 @@
 ---
 title: 图片旋转摆正根据图片的exif信息
-tag:
-- python
-- 图片
-- 旋转
-- exif
-category:
-- python
 ---
 
 ```python

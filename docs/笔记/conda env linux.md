@@ -1,9 +1,5 @@
 ---
 title: conda env linux
-tag:
-- env
-category:
-- env
 ---
 
 # 切换到一个目录中
